@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col">
+    <section class='product-details'>
+      <h3>Selected Product <span style="font-size: 14px">To delete a product, the Qty must be <strong>0</strong></span></h3>
+      <div class="row">
+        <div class="col">ID: </div>
+        <div class="col">{{ product?._id }}</div>
+      </div>
+      <div class="row">
+        <div class="col">Name: </div>
+        <div class="col">{{ product?.name | titlecase }}</div>
+      </div>
+      <div class="row">
+        <div class="col">Qty: </div>
+        <div class="col">{{ product?.quantity }}</div>
+      </div>
+      <div class="row">
+        <div class="col">Price: </div>
+        <div class="col">{{ product?.price | currency:'USD' }}</div>
+      </div>
+    </section>
+    <section class="row-results">
+      <a style="display: inline;" class='btn btn-primary btn-sm' routerLink="/products">BACK</a>
+      <button style="display: inline;" *ngIf='product?.quantity <= 0' class='btn btn-primary btn-sm' (click)='onDelete(product._id)'>DELETE</button>
+      <div style="display: inline;" >
+      <!-- <a routerLink='/{{ product._id }}/edit' class='btn btn-primary btn-sm' >EDIT</a> -->
+      <a routerLink='/products/{{ product._id }}/edit' class='btn btn-primary btn-sm'>EDIT</a>
+      </div>
+    </section>
+  </div>
+</div>
+

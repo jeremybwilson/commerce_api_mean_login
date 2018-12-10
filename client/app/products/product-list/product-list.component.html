@@ -1,0 +1,40 @@
+<div class="row" *ngIf='products?.length > 0'>
+  <div class="col">
+    <section class="product-list">
+      <h3>All Products</h3>
+      <div class="row header">
+        <div class="col-4">
+          ID:
+        </div>
+        <div class="col-3">
+          <input type="text" placeholder="Name" [(ngModel)]='filter.name'>
+          <button *ngIf='filter.name' (click)='filter.name = null' class="btn btn-primary btn-sm clear">X</button>
+        </div>
+        <div class="col">
+          <input type="text" placeholder="Qty" [(ngModel)]='filter.quantity'>
+          <button *ngIf='filter.quantity' (click)='filter.author = null' class="btn btn-primary btn-sm clear">X</button>
+        </div>
+        <div class="col-2">
+          <input type="text" placeholder="Price" [(ngModel)]='filter.price'>
+          <button *ngIf='filter.price' (click)='filter.price = null' class="btn btn-primary btn-sm clear">X</button>
+        </div>
+        <div class="col-2">
+          Actions: <button class="btn btn-primary btn-sm" (click)='clearFilter()' *ngIf='filter._id || filter.name || filter.quantity || filter.price'>X</button>
+        </div>
+      </div>
+      <div class="row results"
+      *ngFor="let product of products | search:filter"
+      (click)='onSelect(product)'
+      [routerLink]="product._id">
+        <div class="col-4">{{ product._id }}</div>
+        <div class="col-3">{{ product.name | titlecase }}</div>
+        <div class="col">{{ product.quantity }}</div>
+        <div class="col-2">{{ product.price | currency:'USD' }}</div>
+        <div class="col-2" (click)='onEvent($event)'>
+          <a routerLink='/products/{{ product._id }}/edit' class='btn btn-primary btn-sm'>Edit</a>
+          <button *ngIf="product?.quantity <= 0" (click)='onDelete(product._id)' class='btn btn-primary btn-sm'>Delete</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

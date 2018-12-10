@@ -1,0 +1,60 @@
+<section class='product-new'>
+    <h3>Create Product </h3> <span class='json-data'>{{ form?.value | json }}</span>
+    <form (submit)='form.valid && onSubmit($event, form)' #form='ngForm'>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="name">Name: </label>
+          <input class='form-control' type="text" name="name"
+          [(ngModel)]='product.name'
+          #name='ngModel'
+          minlength='3'
+          required>
+          <div *ngIf='(name?.touched || name?.dirty) && name?.errors'>
+            <div class="error" *ngIf='name?.errors.required'>
+              You must enter a product name
+              <div *ngIf='name?.errors.minlength'>
+                Name must be at least 2 characters
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="quantity">Qty: </label>
+          <input class='form-control' type="text" name="quantity"
+          [(ngModel)]='product.quantity'
+          required
+          #quantity='ngModel'
+          min='1'>
+          <div *ngIf='(quantity?.touched || quantity?.dirty) && quantity?.errors'>
+            <div class="error" *ngIf='quantity?.errors.required'>
+              You must enter a # for quantity
+              <div *ngIf='quantity?.errors.minlength'>
+                Qty must be at least 1 characters
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="price">Price: </label>
+          <input class='form-control' type="text" name="price"
+          [(ngModel)]='product.price'
+          required
+          #price='ngModel'
+          minlength='2'>
+          <div *ngIf='(price?.touched || price?.dirty) && price?.errors'>
+            <div class="error" *ngIf='price?.errors.required'>
+              You must enter a price
+            </div>
+            <div class="error" *ngIf='price?.errors.minlength'>
+              Price value must be at 2 characters.
+            </div>
+          </div>
+        </div>
+      </div>
+      <button *ngIf='form.valid' type='submit' class='btn btn-primary btn-sm'>Submit</button>
+    </form>
+  </section>

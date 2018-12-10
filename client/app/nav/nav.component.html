@@ -1,0 +1,13 @@
+<nav>
+  <ul>
+    <li><a routerLink="/">Home</a> </li>
+    <li>
+      <a routerLink="/products">Product list</a>
+    </li>
+    <!-- <li *ngIf="isLoggedIn"> -->
+    <li>
+      <a class="btn btn-primary btn-sm" routerLink="products/new">Create new product</a>
+    </li>
+    <li *ngIf="isLoggedIn"><a class="btn btn-primary btn-sm" (click)='logout()'>Logout</a></li>
+  </ul>
+</nav>

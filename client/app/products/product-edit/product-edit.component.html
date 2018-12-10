@@ -1,0 +1,63 @@
+<section class='product-new'>
+  <h3>Edit Product <span style="font-size: 14px" class="red">(all fields must be updated to submit form)</span></h3>
+  <form (submit)='form.valid && editProduct(product)' #form='ngForm'>
+    <div class="form-row">
+      <div class="form-group col-md-5">
+        <label for="name">Name: </label>
+        <input class='form-control' type="text" name="name"
+        [(ngModel)]='product.name'
+        required
+        #name='ngModel'
+        minlength='3'>
+        <div class="error" *ngIf='(name?.touched || name?.dirty) && name?.errors'>
+          <div *ngIf='name?.errors.required'>
+            You must enter a name
+          </div>
+          <div *ngIf='name?.errors.minlength'>
+            Name must be at least {{ name?.errors.minlength.requiredLength }} characters.  {{ name?.errors.minlength.actualLength }} characters is not enough.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-5">
+        <label for="quantity">Qty: </label>
+        <input class='form-control' type="text" name="quantity"
+        [(ngModel)]='product.quantity'
+        required
+        #quantity='ngModel'
+        minlength='1'>
+        <div class="error" *ngIf='(quantity?.touched || quantity?.dirty) && quantity?.errors'>
+          <div *ngIf='quantity?.errors.required'>
+            You must enter a quantity
+          </div>
+          <div *ngIf='quantity?.errors.minlength'>
+            Quantity must be at least {{ quantity?.errors.minlength.requiredLength }} characters.  {{ quantity?.errors.minlength.actualLength }} characters is not enough.
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-5">
+        <label for="price">Price: </label>
+        <input class='form-control' type="text" name="price"
+        [(ngModel)]='product.price'
+        required
+        #price='ngModel'
+        minlength='2'>
+        <div class="error" *ngIf='(price?.touched || price?.dirty) && price?.errors'>
+          <div *ngIf='price?.errors.required'>
+            You must enter a price
+          </div>
+          <div *ngIf='price?.errors.minlength'>
+            Price must be at least {{ price?.errors.minlength.requiredLength }} characters.  {{ price?.errors.minlength.actualLength }} characters is not enough.
+          </div>
+        </div>
+      </div>
+    </div>
+    <button (click)="onReset($event, form)" class='btn btn-primary btn-sm'>RESET</button>
+    <button *ngIf='form.valid' type='submit' class='btn btn-primary btn-sm'>UPDATE</button>
+    <button *ngIf='product?.quantity <= 0 && form.valid' class='btn btn-primary btn-sm' (click)='onDelete(product._id)'>DELETE</button>
+  </form>
+</section>

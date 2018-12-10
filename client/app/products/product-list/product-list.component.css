@@ -1,0 +1,43 @@
+label {
+  /* justify-content: start; */
+  display: block;
+  text-align: left;
+}
+fieldset {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.tutorial-links {
+  list-style-type: none;
+  font-size: .85em;
+  padding: 0;
+}
+
+.tutorial-links li {
+  margin-left: -1em;
+}
+.header> [class*='col'] {
+  font-weight: bold;
+}
+
+.header> [class*='col-'], .results> [class*='col-'] {
+  padding: 0 1em;
+}
+
+.result> [class*='col-']>a, .results> [class*='col-']>form {
+  display: inline-block;
+  margin-right: 1em;
+}
+
+.product-list [class*='col']>input {
+  width: 70%;
+}
+
+.product-id {
+  overflow-wrap: break-word;
+}
+
+.row.results [class*='col']>a, .row.results [class*='col']>button {
+  margin-right: 5px;
+}
